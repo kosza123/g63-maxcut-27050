@@ -4,6 +4,9 @@
 
 **A publicly verifiable G63 Max-Cut solution of 27,050, improving upon the published 27,047 reference.**
 
+**Can you verify it, or beat it?** The full partition is public and checking it takes under a second
+(see *Verify it yourself*). If you find an error or a higher cut, please open an issue.
+
 ![G63 Max-Cut 27,050](media/g63_maxcut_27050.png)
 
 | | |
