@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this result, please cite it as below."
+title: "G63 Max-Cut: a publicly verifiable solution of 27,050"
+abstract: "A publicly verifiable Max-Cut configuration of value 27,050 for the G-set instance G63 (7,000 vertices, 41,459 edges), improving upon the published 27,047 reference (arXiv:2510.21105). Found with population annealing Monte Carlo on a consumer GPU (NVIDIA GeForce RTX 3060 Ti); includes independent verifiers and checksums."
+type: dataset
+authors:
+  - family-names: Majchrzak
+    given-names: Filip
+    affiliation: "SAPIO MORPHEUS / COMPLEX (independent research project)"
+date-released: 2026-11-08
+version: "1.0.0"
+license: CC-BY-4.0
+repository-code: "https://github.com/kosza123/g63-maxcut-27050"
+keywords:
+  - max-cut
+  - G-set
+  - G63
+  - population annealing
+  - combinatorial optimization
+  - benchmark
+  - GPU
+references:
+  - type: article
+    title: "New Best-Known Max-Cut Solution for the G63 Instance in the G-Set Benchmark"
+    authors:
+      - family-names: Khan
+        given-names: Nikhat
+      - family-names: Shukla
+        given-names: Nikhil
+    year: 2025
+    identifiers:
+      - type: other
+        value: "arXiv:2510.21105"

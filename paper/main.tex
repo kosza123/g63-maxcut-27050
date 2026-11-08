@@ -1,0 +1,134 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+
+\title{A Publicly Verifiable G63 Max-Cut Solution of 27,050\\Found with Population Annealing on a Consumer GPU}
+\author{Filip Majchrzak\\
+\small SAPIO MORPHEUS / COMPLEX (independent research project), Poland\\
+\small \url{https://github.com/kosza123}}
+\date{November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We report a Max-Cut configuration of value 27,050 for the G-set instance G63 (7,000 vertices, 41,459 unit-weight edges),
+improving upon the published reference value of 27,047. The configuration was found with population annealing Monte Carlo,
+a known method, implemented for a single consumer GPU (NVIDIA GeForce RTX 3060 Ti), 158.5 minutes into a seven-hour experiment.
+The complete partition, checksums and dependency-free verifiers are publicly available, so the value can be checked
+independently in under a second. Relative to the published 27,047 configuration, the new solution differs by a single connected
+set of 1,092 vertices whose flip adds three cut edges, together with zero-cost clusters. We make no claim of optimality or
+of a new algorithm, and we discuss the limitations of the experiment.
+\end{abstract}
+
+\section{Introduction}
+The G-set graphs, a collection whose first instances (G1--G54) were generated with the \emph{rudy} generator and introduced by
+Helmberg and Rendl~\cite{helmberg2000}, later extended with larger instances including G63~\cite{gset}, are a standard benchmark for
+Max-Cut heuristics~\cite{benlic2013,shylo2015}. Instance G63 has 7,000 vertices and 41,459 edges with
+unit weights; it is one of the two G-set instances with the largest number of edges. For about a decade the best reported cut for G63
+was 27,045, attributed to global equilibrium search~\cite{shylo2015}. In 2025, Khan and Shukla reported 27,047 with a GPU-accelerated
+population annealing framework and published the corresponding configuration~\cite{khan2025}; a later preprint by the same group again
+lists 27,047 as the best value it achieved for G63~\cite{khan2026}.
+
+Here we present a configuration of value 27,050. Our contribution is computational: a verifiable configuration that exceeds the
+published reference, obtained with a standard method on consumer hardware, together with the data needed to check it.
+
+\section{The configuration and its verification}
+The partition is given as a string of 7,000 characters \texttt{0}/\texttt{1}, character $k$ being the side of vertex $k+1$ in the
+G-set numbering, and equivalently as 1,750 hexadecimal digits, each read most significant bit first (the hexadecimal format of~\cite{khan2025};
+reading their string this way reproduces their value of 27,047).
+Its SHA-256 digest is \texttt{2e3d330e\ldots a566df}; the original G63 file~\cite{gset} has digest \texttt{a1d08e1e\ldots a99b}
+(full values in the repository).
+
+The cut value was recomputed by seven independent implementations (Python, Node.js, awk, several numpy formulations including the spin form
+$(\sum w - x^{\top}Wx)/2$ and the Laplacian form $x^{\top}Lx/4$, PowerShell and gawk), three of them written by separate AI-agent instances
+without access to the search code and one run on a freshly downloaded copy of G63. All give 27,050; the complementary partition
+gives the same value. As controls, the published configuration of~\cite{khan2025} gives 27,047 with the same tools, and a
+one-position shift of our string gives 20,744 or 20,588, close to the value $m/2 = 20{,}729.5$ expected for a random partition.
+The configuration is a 1-flip local optimum (no single-vertex flip increases the cut; 221 vertices have zero gain).
+
+\paragraph{Relation to the published configuration.}
+Up to global complement, the two configurations differ on 1,140 vertices, which form 43 connected components in G63.
+Exactly one component, a connected set of 1,092 vertices, changes the cut: flipping it in the published configuration adds
+three edges, giving 27,050. The other 42 components are zero-cost clusters. The improvement is therefore a coordinated
+rearrangement of about one thousand vertices rather than a small local modification.
+
+\section{Method}
+Population annealing~\cite{hukushima2003,machta2010,wang2015} evolves a population of replicas while the inverse temperature
+$\beta$ increases; at each step the population is resampled in proportion to Boltzmann weights and every replica is updated by
+Monte Carlo sweeps. We maximise the cut with weights $\propto \exp(\beta\,\mathrm{cut})$.
+
+The run that produced the configuration used $R=8{,}192$ replicas initialised uniformly at random, a geometric schedule of
+6,000 steps from $\beta=0.3$ to $\beta=9.0$, systematic resampling with weights $\exp((\beta_t-\beta_{t-1})\,\mathrm{cut})$,
+and ten heat-bath sweeps per step, with flip probability $1/(1+e^{-\beta g})$ for a cut change $g$. Vertices were updated by the
+classes of a greedy proper colouring with eight colours, so that a whole class is updated in parallel; every anneal ended with a
+zero-temperature quench. The code was written for this experiment in CUDA C, compiled at run time through CuPy, with spins stored
+in a vertex-major, replica-minor layout for coalesced memory access; cuts were tracked incrementally and periodically recounted.
+One anneal took about ten minutes on an RTX 3060 Ti that was shared with a second annealing process.
+
+\section{Results}
+The experiment started on 7 November 2026 at 23:35:21 CET with a hard limit of seven hours. A first configuration above the
+reference (27,048) appeared after 113 minutes, and the 27,050 configuration after 158.5 minutes (anneal 12 of the run described
+above). No configuration above 27,050 was found in the remaining time.
+
+Table~\ref{tab:stats} summarises the best cut of 66 complete anneals with population 8,192 and three schedules chosen during the
+experiment ($\beta$ up to 7, 9 and 10; 4,000, 6,000 and 9,000 steps). For 55 of these anneals (those whose saved states included a 27,047 state) we checked one 27,047 state; all
+of them belonged to the family of the published configuration (differing from it only by zero-cost clusters). Shorter anneals
+(population 2,048--4,096, at most 1,500 steps) ended between 26,957 and 27,045.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cc}
+\toprule
+best cut of the anneal & number of anneals \\
+\midrule
+27,046 & 2 \\
+27,047 & 54 \\
+27,048 & 9 \\
+27,050 & 1 \\
+\bottomrule
+\end{tabular}
+\caption{Best cut per anneal for 66 complete anneals with population 8,192 started from random states.}
+\label{tab:stats}
+\end{table}
+
+Before population annealing, tabu search and exact re-optimisation of ball-shaped regions of 300--1,200 vertices by
+mixed-integer programming around the published configuration found no improvement. The 27,047 level behaves as a large plateau:
+about 235 vertices of a 27,047 configuration have zero flip gain, and different 27,047 configurations differ by independent
+zero-cost clusters.
+
+\section{Discussion and limitations}
+The result is a single verified configuration on a single instance, obtained in one experiment whose parameters were adjusted
+during the run; we did not compare solvers on equal hardware. Population annealing is a known method, and the run times reported
+in~\cite{khan2025} (runs that produced their best cut typically ran 8--24 hours on an RTX A6000) are run lengths under different
+settings, not comparable with our anneal times; no equal-hardware or equal-time comparison was made. We make no claim that 27,050 is optimal.
+
+All primary sources we could verify list at most 27,047 for G63~\cite{khan2025,khan2026}. A secondary aggregator page has been
+described in search-engine snippets as mentioning a value of 27,052; we could not access that page or locate a primary source or
+configuration. If such a configuration exists, it exceeds the value reported here.
+
+\section*{Data availability}
+The partition, checksums, verifiers, verification log and methodology are available at
+\url{https://github.com/kosza123/g63-maxcut-27050}.
+
+\section*{Use of AI}
+The experiment was conceived and directed by the author. The search code, the execution of the experiment, the verification
+tools and a first draft of this manuscript were produced with an AI assistant (Claude, Anthropic) acting as a research operator
+under the author's direction; three of the independent recounts were written by separate AI-agent instances without access to the
+search code. The author is responsible for the content.
+
+\begin{thebibliography}{9}
+\bibitem{helmberg2000} C. Helmberg and F. Rendl, A spectral bundle method for semidefinite programming, \emph{SIAM Journal on Optimization} 10(3):673--696, 2000.
+\bibitem{gset} G-set Max-Cut test graphs, collection hosted by Y. Ye, Stanford University, \url{https://web.stanford.edu/~yyye/yyye/Gset/} (accessed November 2026).
+\bibitem{benlic2013} U. Benlic and J.-K. Hao, Breakout local search for the max-cut problem, \emph{Engineering Applications of Artificial Intelligence} 26(3):1162--1173, 2013.
+\bibitem{shylo2015} V. P. Shylo, F. Glover and I. V. Sergienko, Teams of global equilibrium search algorithms for solving the weighted maximum cut problem in parallel, \emph{Cybernetics and Systems Analysis} 51(1):16--24, 2015.
+\bibitem{hukushima2003} K. Hukushima and Y. Iba, Population annealing and its application to a spin glass, \emph{AIP Conference Proceedings} 690:200--206, 2003.
+\bibitem{machta2010} J. Machta, Population annealing with weighted averages: A Monte Carlo method for rough free-energy landscapes, \emph{Physical Review E} 82:026704, 2010.
+\bibitem{wang2015} W. Wang, J. Machta and H. G. Katzgraber, Population annealing: Theory and application in spin glasses, \emph{Physical Review E} 92:063307, 2015.
+\bibitem{khan2025} N. Khan and N. Shukla, New best-known Max-Cut solution for the G63 instance in the G-set benchmark, arXiv:2510.21105, 2025.
+\bibitem{khan2026} N. Khan, R. Redding and N. Shukla, Leveraging population dynamics to steer efficient search in large-scale combinatorial optimization, arXiv:2606.25203, 2026.
+\end{thebibliography}
+\end{document}
