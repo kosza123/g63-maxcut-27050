@@ -1,5 +1,7 @@
 # G63 Max-Cut: a publicly verifiable solution of 27,050
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24049667.svg)](https://doi.org/10.5281/zenodo.24049667)
+
 **A publicly verifiable G63 Max-Cut solution of 27,050, improving upon the published 27,047 reference.**
 
 ![G63 Max-Cut 27,050](media/g63_maxcut_27050.png)
@@ -62,8 +64,13 @@ code. See [METHODOLOGY.md](METHODOLOGY.md).
 
 ## Citation
 
-If you use this result, please cite it via `CITATION.cff` (GitHub "Cite this repository"). A DOI will be added once the
-release is archived.
+If you use this result, please cite the archived record:
+
+> Majchrzak, F. (2026). *G63 Max-Cut: a publicly verifiable solution of 27,050* (Version 1.0.0) [Data set]. Zenodo.
+> https://doi.org/10.5281/zenodo.24049667
+
+The DOI above always resolves to the latest version; version 1.0.0 specifically is https://doi.org/10.5281/zenodo.24049668.
+GitHub's "Cite this repository" uses `CITATION.cff`.
 
 ## Contact
 
