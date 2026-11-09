@@ -1,0 +1,38 @@
+# One-off publisher for release v1.1.0, run from a temporary branch on behalf of the owner.
+# It tags the approved commit abe5c85 (not this branch) and publishes the release; Zenodo archives that tag.
+name: publish-release-v1.1.0
+on:
+  push:
+    branches: [release-v1.1.0-publisher]
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish release v1.1.0 at the approved commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: abe5c8587d1f566037871c323db9a279e932a5c0
+          TAG: v1.1.0
+          TITLE: "v1.1.0 - Correction: 27,050 is not the highest reported G63 value"
+        run: |
+          set -euo pipefail
+          R="$GITHUB_REPOSITORY"
+          echo "Existing releases:"; gh api "repos/$R/releases?per_page=100" --jq '.[] | {tag_name, draft, name, id}'
+          ID=$(gh api "repos/$R/releases?per_page=100" --jq "[.[] | select(.tag_name==\"$TAG\")][0].id // empty")
+          if [ -n "$ID" ]; then
+            DRAFT=$(gh api "repos/$R/releases/$ID" --jq .draft)
+            if [ "$DRAFT" != "true" ]; then echo "Release $TAG is already published; nothing to do."; exit 0; fi
+            echo "Publishing existing draft $ID"
+            gh api -X PATCH "repos/$R/releases/$ID" -f tag_name="$TAG" -f target_commitish="$SHA" -f name="$TITLE" \
+              -F body=@.github/release-notes-v1.1.0.md -F draft=false -F prerelease=false -f make_latest=true --jq '{html_url, draft, published_at}'
+          else
+            echo "Creating release $TAG"
+            gh api -X POST "repos/$R/releases" -f tag_name="$TAG" -f target_commitish="$SHA" -f name="$TITLE" \
+              -F body=@.github/release-notes-v1.1.0.md -F draft=false -F prerelease=false -f make_latest=true --jq '{html_url, draft, published_at}'
+          fi
+          TAGSHA=$(gh api "repos/$R/git/ref/tags/$TAG" --jq .object.sha)
+          echo "Tag $TAG -> $TAGSHA"
+          test "$TAGSHA" = "$SHA"
