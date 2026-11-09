@@ -7,8 +7,8 @@
 > **Correction (version 1.1.0, November 2026).** Our result of 27,050 does improve upon the cited 27,047 configuration
 > (Khan & Shukla), but our original presentation in version 1.0.0 was misleading because we overlooked an earlier, publicly verifiable
 > G63 configuration with cut value **27,052**, published by Ota and Okada on 23 March 2026. In particular, the statement that every
-> verifiable primary source listed at most 27,047 for G63 was wrong. Researchers have also pointed us to an earlier report of 27,052
-> (Fujitsu Digital Annealer, 2020) and a 2026 report of 27,051, which we have not yet been able to verify in the full texts. 27,050 is therefore
+> verifiable primary source listed at most 27,047 for G63 was wrong. Researchers have also pointed us to earlier reports of 27,052
+> (Fujitsu Digital Annealer, 2020 and 2021) and a 2026 report of 27,051, which we have not yet read in the full texts. 27,050 is therefore
 > **not** the highest reported value for G63. Details and citations:
 > [Status of reported G63 values](#status-of-reported-g63-values).
 
@@ -77,14 +77,14 @@ Reported values of at least 27,045 that we know of, in chronological order. As f
 | 27,045 | Global equilibrium search: V. P. Shylo, F. Glover, I. V. Sergienko, *Cybernetics and Systems Analysis* 51(1):16–24, 2015, [doi:10.1007/s10559-015-9692-2](https://doi.org/10.1007/s10559-015-9692-2) (as credited in arXiv:2510.21105) | not known to us |
 | 27,052 (*not verified by us*) | Fujitsu Digital Annealer: S. Matsubara *et al.*, ASP-DAC 2020, pp. 667–672, [doi:10.1109/ASP-DAC47756.2020.9045100](https://doi.org/10.1109/ASP-DAC47756.2020.9045100); K. Takemoto *et al.*, IEICE Trans. Electron. (Japanese ed.) J104-C(4):101–109, 2021, [doi:10.14923/transelej.2020jci0010](https://doi.org/10.14923/transelej.2020jci0010) — see note | none known |
 | 27,047 | N. Khan, N. Shukla, arXiv:2510.21105 (October 2025); also listed in N. Khan, R. Redding, N. Shukla, arXiv:2606.25203 (June 2026) | yes |
-| 27,052 | R. Ota, M. Okada, *An Explicit Public Certificate for G63 with Cut Value 27,052*, Zenodo, 23 March 2026, [doi:10.5281/zenodo.19189885](https://doi.org/10.5281/zenodo.19189885) | **yes** — highest publicly verifiable value known to us |
+| 27,052 | R. Ota, M. Okada, *G-set G63 Max-Cut Certificate: A 7000-bit Assignment with Cut Value 27052* (Zenodo record with the note "An Explicit Public Certificate for G63 with Cut Value 27,052"), 23 March 2026, [doi:10.5281/zenodo.19189885](https://doi.org/10.5281/zenodo.19189885) | **yes** — highest publicly verifiable value known to us |
 | 27,051 (*not verified by us*) | H. Ju, J. Seol, S. Choi, S. Hong, *Hardware Acceleration of Probabilistic Computing for Max-Cut Problems*, IEEE Access 14:132813–132824, 2026, [doi:10.1109/ACCESS.2026.3727846](https://doi.org/10.1109/ACCESS.2026.3727846) — see note | not known to us |
 | 27,050 | this record (8 November 2026) | yes |
 
-Note: the Fujitsu 27,052 reports and the 27,051 report were pointed out to us by Kenneth Zick (USC Information Sciences Institute)
-and Nikhil Shukla (University of Virginia). We have not yet read these values in the full texts ourselves (the IEEE Access paper is open access, but our
+Note: the Fujitsu 27,052 reports were pointed out to us by Kenneth Zick (USC Information Sciences Institute) and Nikhil Shukla
+(University of Virginia), and the 27,051 report by Kenneth Zick. We have not yet read these values in the full texts ourselves (the IEEE Access paper is open access, but our
 automated tools could not retrieve it); the bibliographic data above are checked, the G63 values are not. The 27,052 of Ota & Okada
-is checked against their published Zenodo record (value and assignment as given by the authors; we have not recomputed it).
+is checked against their published Zenodo record (value and assignment as given by the authors).
 We thank both for their help in describing this result accurately.
 
 ## Use of AI

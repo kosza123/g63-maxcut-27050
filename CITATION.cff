@@ -40,7 +40,7 @@ references:
       - type: other
         value: "arXiv:2510.21105"
   - type: data
-    title: "An Explicit Public Certificate for G63 with Cut Value 27,052"
+    title: "G-set G63 Max-Cut Certificate: A 7000-bit Assignment with Cut Value 27052"
     authors:
       - family-names: Ota
         given-names: Rikito
