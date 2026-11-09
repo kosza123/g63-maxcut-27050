@@ -4,11 +4,12 @@
 
 **A publicly verifiable G63 Max-Cut configuration of value 27,050.**
 
-> **Correction (version 1.1.0, November 2026).** Version 1.0.0 of this record described 27,050 as an improvement on the published
-> 27,047 reference and stated that every verifiable primary source listed at most 27,047 for G63. That was wrong. An explicit,
-> publicly verifiable G63 configuration with cut value **27,052** was published by Ota and Okada on 23 March 2026. Researchers have also
-> pointed us to earlier reports of 27,052 (Fujitsu Digital Annealer, 2020) and of 27,051 (2026), which we have not yet been able to verify
-> in the full texts. 27,050 is therefore **not** the highest reported value for G63. Details and citations:
+> **Correction (version 1.1.0, November 2026).** Our result of 27,050 does improve upon the cited 27,047 configuration
+> (Khan & Shukla), but our original presentation in version 1.0.0 was misleading because we overlooked an earlier, publicly verifiable
+> G63 configuration with cut value **27,052**, published by Ota and Okada on 23 March 2026. In particular, the statement that every
+> verifiable primary source listed at most 27,047 for G63 was wrong. Researchers have also pointed us to earlier reports of 27,052
+> (Fujitsu Digital Annealer, 2020) and of 27,051 (2026), which we have not yet been able to verify in the full texts. 27,050 is therefore
+> **not** the highest reported value for G63. Details and citations:
 > [Status of reported G63 values](#status-of-reported-g63-values).
 
 **Can you verify it, or beat it?** The full partition is public and checking it takes under a second
