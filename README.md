@@ -7,13 +7,13 @@
 > **Correction (version 1.1.0, November 2026).** Our result of 27,050 does improve upon the cited 27,047 configuration
 > (Khan & Shukla), but our original presentation in version 1.0.0 was misleading because we overlooked an earlier, publicly verifiable
 > G63 configuration with cut value **27,052**, published by Ota and Okada on 23 March 2026. In particular, the statement that every
-> verifiable primary source listed at most 27,047 for G63 was wrong. Researchers have also pointed us to earlier reports of 27,052
-> (Fujitsu Digital Annealer, 2020) and of 27,051 (2026), which we have not yet been able to verify in the full texts. 27,050 is therefore
+> verifiable primary source listed at most 27,047 for G63 was wrong. Researchers have also pointed us to an earlier report of 27,052
+> (Fujitsu Digital Annealer, 2020) and a 2026 report of 27,051, which we have not yet been able to verify in the full texts. 27,050 is therefore
 > **not** the highest reported value for G63. Details and citations:
 > [Status of reported G63 values](#status-of-reported-g63-values).
 
-**Can you verify it, or beat it?** The full partition is public and checking it takes under a second
-(see *Verify it yourself*). If you find an error or a higher cut, please open an issue.
+**Can you verify it?** The full partition is public and checking it takes under a second
+(see *Verify it yourself*). If you find an error, or a cut above 27,052, please open an issue.
 
 ![G63 Max-Cut 27,050](media/g63_maxcut_27050.png)
 
@@ -82,8 +82,9 @@ Reported values of at least 27,045 that we know of, in chronological order. As f
 | 27,050 | this record (8 November 2026) | yes |
 
 Note: the Fujitsu 27,052 reports and the 27,051 report were pointed out to us by Kenneth Zick (USC Information Sciences Institute)
-and Nikhil Shukla (University of Virginia). We have not been able to read these values in the full texts ourselves (paywall / access
-restrictions); the bibliographic data above are checked, the G63 values are not. The 27,052 of Ota & Okada is verified from their record.
+and Nikhil Shukla (University of Virginia). We have not yet read these values in the full texts ourselves (the IEEE Access paper is open access, but our
+automated tools could not retrieve it); the bibliographic data above are checked, the G63 values are not. The 27,052 of Ota & Okada
+is checked against their published Zenodo record (value and assignment as given by the authors; we have not recomputed it).
 We thank both for their help in describing this result accurately.
 
 ## Use of AI
@@ -97,10 +98,11 @@ code. See [METHODOLOGY.md](METHODOLOGY.md).
 
 If you use this result, please cite the archived record:
 
-> Majchrzak, F. (2026). *G63 Max-Cut: a publicly verifiable solution of 27,050* (Version 1.1.0) [Data set]. Zenodo.
+> Majchrzak, F. (2026). *G63 Max-Cut: a publicly verifiable solution of 27,050* [Data set]. Zenodo.
 > https://doi.org/10.5281/zenodo.24049667
 
-The DOI above always resolves to the latest version. Version 1.0.0 (https://doi.org/10.5281/zenodo.24049668) contains the incorrect
+The DOI above covers all versions and always resolves to the latest one. To cite a specific version, use its own DOI from the
+Zenodo record page. Version 1.0.0 (https://doi.org/10.5281/zenodo.24049668) contains the incorrect
 statement about other reports that is corrected in version 1.1.0.
 GitHub's "Cite this repository" uses `CITATION.cff`.
 
