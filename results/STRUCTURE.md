@@ -10,4 +10,4 @@ Reference: the 27,047 configuration published in arXiv:2510.21105 (hexadecimal p
 - The 27,050 solution is a 1-flip local optimum: no single vertex flip increases the cut (221 vertices have zero gain).
 
 The vertex list of the 1092-vertex component (1-based G-set numbering) is in `domain_1092_vertices.txt`.
-Interpretation: the improvement is a coordinated move of about one thousand vertices (a domain-wall-like rearrangement), not a small local modification.
+Interpretation: the improvement over the 27,047 configuration is a coordinated move of about one thousand vertices (a domain-wall-like rearrangement), not a small local modification.

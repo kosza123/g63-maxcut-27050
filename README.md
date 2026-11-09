@@ -2,7 +2,14 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24049667.svg)](https://doi.org/10.5281/zenodo.24049667)
 
-**A publicly verifiable G63 Max-Cut solution of 27,050, improving upon the published 27,047 reference.**
+**A publicly verifiable G63 Max-Cut configuration of value 27,050.**
+
+> **Correction (version 1.1.0, November 2026).** Version 1.0.0 of this record described 27,050 as an improvement on the published
+> 27,047 reference and stated that every verifiable primary source listed at most 27,047 for G63. That was wrong. An explicit,
+> publicly verifiable G63 configuration with cut value **27,052** was published by Ota and Okada on 23 March 2026. Researchers have also
+> pointed us to earlier reports of 27,052 (Fujitsu Digital Annealer, 2020) and of 27,051 (2026), which we have not yet been able to verify
+> in the full texts. 27,050 is therefore **not** the highest reported value for G63. Details and citations:
+> [Status of reported G63 values](#status-of-reported-g63-values).
 
 **Can you verify it, or beat it?** The full partition is public and checking it takes under a second
 (see *Verify it yourself*). If you find an error or a higher cut, please open an issue.
@@ -12,8 +19,9 @@
 | | |
 |---|---|
 | Instance | G63 from the G-set benchmark (7,000 vertices, 41,459 unit-weight edges) |
-| Published reference | 27,047 — Khan & Shukla, arXiv:2510.21105 (2025) |
-| This solution | **27,050** (+3 edges) |
+| Highest publicly verifiable value known to us | **27,052** — Ota & Okada, Zenodo, 23 March 2026 ([doi:10.5281/zenodo.19189885](https://doi.org/10.5281/zenodo.19189885)) |
+| Reference used in version 1.0.0 | 27,047 — Khan & Shukla, arXiv:2510.21105 (2025) |
+| This solution | **27,050** (+3 edges relative to the 27,047 configuration; 2 below 27,052) |
 | Method | Population annealing Monte Carlo on a GPU (a known method; see [METHODOLOGY.md](METHODOLOGY.md)) |
 | Hardware | one NVIDIA GeForce RTX 3060 Ti (consumer GPU) |
 | Found | 8 November 2026, 02:13:52 CET, 158.5 minutes into a 7-hour experiment |
@@ -52,11 +60,30 @@ the published 27,047 configuration (hexadecimal string in arXiv:2510.21105, read
 
 ## What we claim — and what we do not
 
-- We claim a **verifiable configuration** with cut value 27,050 on G63, which exceeds the published 27,047 reference.
+- We claim a **verifiable configuration** with cut value 27,050 on G63. It exceeds the 27,047 configuration of Khan & Shukla,
+  but it is **not** the highest reported or the highest publicly verifiable value for G63 (see below).
 - We do **not** claim that 27,050 is optimal, and we do not claim a new algorithm: population annealing is a known method.
-- Status of other reports: every primary source we could verify lists at most 27,047 for G63 (arXiv:2510.21105; arXiv:2606.25203).
-  A secondary aggregator page has been described in search snippets as mentioning a value of 27,052; we could not access it
-  or find a primary source or configuration for it. If such a configuration exists, it would exceed 27,050.
+- The 27,050 configuration was found on 8 November 2026 from random initial states, before we were aware of the 27,052 reports,
+  and without using any 27,052 configuration.
+
+## Status of reported G63 values
+
+Reported values of at least 27,045 that we know of, in chronological order. As far as we know, configurations are public only for 27,047,
+27,050 and the 27,052 of Ota & Okada. Rows marked *not verified by us* rest on pointers from other researchers.
+
+| Value | Source | Configuration public? |
+|---|---|---|
+| 27,045 | Global equilibrium search: V. P. Shylo, F. Glover, I. V. Sergienko, *Cybernetics and Systems Analysis* 51(1):16–24, 2015, [doi:10.1007/s10559-015-9692-2](https://doi.org/10.1007/s10559-015-9692-2) (as credited in arXiv:2510.21105) | not known to us |
+| 27,052 (*not verified by us*) | Fujitsu Digital Annealer: S. Matsubara *et al.*, ASP-DAC 2020, pp. 667–672, [doi:10.1109/ASP-DAC47756.2020.9045100](https://doi.org/10.1109/ASP-DAC47756.2020.9045100); K. Takemoto *et al.*, IEICE Trans. Electron. (Japanese ed.) J104-C(4):101–109, 2021, [doi:10.14923/transelej.2020jci0010](https://doi.org/10.14923/transelej.2020jci0010) — see note | none known |
+| 27,047 | N. Khan, N. Shukla, arXiv:2510.21105 (October 2025); also listed in N. Khan, R. Redding, N. Shukla, arXiv:2606.25203 (June 2026) | yes |
+| 27,052 | R. Ota, M. Okada, *An Explicit Public Certificate for G63 with Cut Value 27,052*, Zenodo, 23 March 2026, [doi:10.5281/zenodo.19189885](https://doi.org/10.5281/zenodo.19189885) | **yes** — highest publicly verifiable value known to us |
+| 27,051 (*not verified by us*) | H. Ju, J. Seol, S. Choi, S. Hong, *Hardware Acceleration of Probabilistic Computing for Max-Cut Problems*, IEEE Access 14:132813–132824, 2026, [doi:10.1109/ACCESS.2026.3727846](https://doi.org/10.1109/ACCESS.2026.3727846) — see note | not known to us |
+| 27,050 | this record (8 November 2026) | yes |
+
+Note: the Fujitsu 27,052 reports and the 27,051 report were pointed out to us by Kenneth Zick (USC Information Sciences Institute)
+and Nikhil Shukla (University of Virginia). We have not been able to read these values in the full texts ourselves (paywall / access
+restrictions); the bibliographic data above are checked, the G63 values are not. The 27,052 of Ota & Okada is verified from their record.
+We thank both for their help in describing this result accurately.
 
 ## Use of AI
 
@@ -69,10 +96,11 @@ code. See [METHODOLOGY.md](METHODOLOGY.md).
 
 If you use this result, please cite the archived record:
 
-> Majchrzak, F. (2026). *G63 Max-Cut: a publicly verifiable solution of 27,050* (Version 1.0.0) [Data set]. Zenodo.
+> Majchrzak, F. (2026). *G63 Max-Cut: a publicly verifiable solution of 27,050* (Version 1.1.0) [Data set]. Zenodo.
 > https://doi.org/10.5281/zenodo.24049667
 
-The DOI above always resolves to the latest version; version 1.0.0 specifically is https://doi.org/10.5281/zenodo.24049668.
+The DOI above always resolves to the latest version. Version 1.0.0 (https://doi.org/10.5281/zenodo.24049668) contains the incorrect
+statement about other reports that is corrected in version 1.1.0.
 GitHub's "Cite this repository" uses `CITATION.cff`.
 
 ## Contact

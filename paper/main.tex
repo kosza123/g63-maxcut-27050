@@ -15,8 +15,11 @@
 \maketitle
 
 \begin{abstract}
-We report a Max-Cut configuration of value 27,050 for the G-set instance G63 (7,000 vertices, 41,459 unit-weight edges),
-improving upon the published reference value of 27,047. The configuration was found with population annealing Monte Carlo,
+We report a Max-Cut configuration of value 27,050 for the G-set instance G63 (7,000 vertices, 41,459 unit-weight edges).
+It exceeds the 27,047 configuration of Khan and Shukla but is not the highest reported value: an explicit public configuration of
+value 27,052 was published by Ota and Okada in March 2026, and an earlier report of 27,052 for the Fujitsu Digital Annealer has been
+pointed out to us.
+The configuration was found with population annealing Monte Carlo,
 a known method, implemented for a single consumer GPU (NVIDIA GeForce RTX 3060 Ti), 158.5 minutes into a seven-hour experiment.
 The complete partition, checksums and dependency-free verifiers are publicly available, so the value can be checked
 independently in under a second. Relative to the published 27,047 configuration, the new solution differs by a single connected
@@ -31,10 +34,14 @@ Max-Cut heuristics~\cite{benlic2013,shylo2015}. Instance G63 has 7,000 vertices 
 unit weights; it is one of the two G-set instances with the largest number of edges. For about a decade the best reported cut for G63
 was 27,045, attributed to global equilibrium search~\cite{shylo2015}. In 2025, Khan and Shukla reported 27,047 with a GPU-accelerated
 population annealing framework and published the corresponding configuration~\cite{khan2025}; a later preprint by the same group again
-lists 27,047 as the best value it achieved for G63~\cite{khan2026}.
+lists 27,047 as the best value it achieved for G63~\cite{khan2026}. In March 2026, however, Ota and Okada published an explicit,
+publicly verifiable configuration of value 27,052~\cite{otaokada2026}. Other researchers have pointed us to an earlier report of 27,052
+for the Fujitsu Digital Annealer~\cite{matsubara2020,takemoto2021}, without a published configuration, and to a report of
+27,051~\cite{ju2026}; we have not been able to verify these two values in the full texts.
 
-Here we present a configuration of value 27,050. Our contribution is computational: a verifiable configuration that exceeds the
-published reference, obtained with a standard method on consumer hardware, together with the data needed to check it.
+Here we present a configuration of value 27,050, found independently from random initial states. Our contribution is computational
+and modest: an independently found, verifiable configuration above 27,047, obtained with a standard method on consumer hardware,
+together with the data needed to check it. It is not a new best-known value.
 
 \section{The configuration and its verification}
 The partition is given as a string of 7,000 characters \texttt{0}/\texttt{1}, character $k$ being the side of vertex $k+1$ in the
@@ -106,9 +113,11 @@ during the run; we did not compare solvers on equal hardware. Population anneali
 in~\cite{khan2025} (runs that produced their best cut typically ran 8--24 hours on an RTX A6000) are run lengths under different
 settings, not comparable with our anneal times; no equal-hardware or equal-time comparison was made. We make no claim that 27,050 is optimal.
 
-All primary sources we could verify list at most 27,047 for G63~\cite{khan2025,khan2026}. A secondary aggregator page has been
-described in search-engine snippets as mentioning a value of 27,052; we could not access that page or locate a primary source or
-configuration. If such a configuration exists, it exceeds the value reported here.
+\paragraph{Correction to the first version of this draft.} An earlier version stated that all verifiable primary sources list at most
+27,047 for G63. That was incorrect: the explicit configuration of Ota and Okada~\cite{otaokada2026} has value 27,052 and is the highest
+publicly verifiable value known to us; we have also been pointed to reports of 27,052 for the Fujitsu Digital
+Annealer~\cite{matsubara2020,takemoto2021} and of 27,051 in~\cite{ju2026}. The Fujitsu and 27,051 reports were pointed out to us by K.~Zick and N.~Shukla; we have not been able to read
+these values in the full texts ourselves.
 
 \section*{Data availability}
 The partition, checksums, verifiers, verification log and methodology are archived on Zenodo,
@@ -120,7 +129,7 @@ tools and a first draft of this manuscript were produced with an AI assistant (C
 under the author's direction; three of the independent recounts were written by separate AI-agent instances without access to the
 search code. The author is responsible for the content.
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{99}
 \bibitem{helmberg2000} C. Helmberg and F. Rendl, A spectral bundle method for semidefinite programming, \emph{SIAM Journal on Optimization} 10(3):673--696, 2000.
 \bibitem{gset} G-set Max-Cut test graphs, collection hosted by Y. Ye, Stanford University, \url{https://web.stanford.edu/~yyye/yyye/Gset/} (accessed November 2026).
 \bibitem{benlic2013} U. Benlic and J.-K. Hao, Breakout local search for the max-cut problem, \emph{Engineering Applications of Artificial Intelligence} 26(3):1162--1173, 2013.
@@ -130,5 +139,9 @@ search code. The author is responsible for the content.
 \bibitem{wang2015} W. Wang, J. Machta and H. G. Katzgraber, Population annealing: Theory and application in spin glasses, \emph{Physical Review E} 92:063307, 2015.
 \bibitem{khan2025} N. Khan and N. Shukla, New best-known Max-Cut solution for the G63 instance in the G-set benchmark, arXiv:2510.21105, 2025.
 \bibitem{khan2026} N. Khan, R. Redding and N. Shukla, Leveraging population dynamics to steer efficient search in large-scale combinatorial optimization, arXiv:2606.25203, 2026.
+\bibitem{matsubara2020} S. Matsubara, M. Takatsu, T. Miyazawa, T. Shibasaki, Y. Watanabe, K. Takemoto and H. Tamura, Digital annealer for high-speed solving of combinatorial optimization problems and its applications, in \emph{Proc. 25th Asia and South Pacific Design Automation Conference (ASP-DAC)}, pp.~667--672, IEEE, 2020, doi:10.1109/ASP-DAC47756.2020.9045100.
+\bibitem{takemoto2021} K. Takemoto, S. Matsubara, Y. Watanabe, D. Shimada, T. Kurita and H. Tamura, ``Digital Annealer'' technology for efficiently solving combinatorial optimization problems and its applications in manufacturing and materials science (in Japanese), \emph{IEICE Transactions on Electronics (Japanese Edition)} J104-C(4):101--109, 2021, doi:10.14923/transelej.2020jci0010.
+\bibitem{otaokada2026} R. Ota and M. Okada, An explicit public certificate for G63 with cut value 27,052, Zenodo, 23 March 2026, doi:10.5281/zenodo.19189885.
+\bibitem{ju2026} H. Ju, J. Seol, S. Choi and S. Hong, Hardware acceleration of probabilistic computing for Max-Cut problems, \emph{IEEE Access} 14:132813--132824, 2026, doi:10.1109/ACCESS.2026.3727846.
 \end{thebibliography}
 \end{document}

@@ -1,14 +1,14 @@
 cff-version: 1.2.0
 message: "If you use this result, please cite it as below."
 title: "G63 Max-Cut: a publicly verifiable solution of 27,050"
-abstract: "A publicly verifiable Max-Cut configuration of value 27,050 for the G-set instance G63 (7,000 vertices, 41,459 edges), improving upon the published 27,047 reference (arXiv:2510.21105). Found with population annealing Monte Carlo on a consumer GPU (NVIDIA GeForce RTX 3060 Ti); includes independent verifiers and checksums."
+abstract: "A publicly verifiable Max-Cut configuration of value 27,050 for the G-set instance G63 (7,000 vertices, 41,459 edges), found with population annealing Monte Carlo on a consumer GPU (NVIDIA GeForce RTX 3060 Ti); includes independent verifiers and checksums. Version 1.1.0 corrects version 1.0.0: 27,050 is not the highest reported value for G63. An explicit public configuration of value 27,052 was published by Ota and Okada (Zenodo, March 2026, doi:10.5281/zenodo.19189885), and an earlier report of 27,052 for the Fujitsu Digital Annealer has been pointed out to us (not yet verified by us)."
 type: dataset
 authors:
   - family-names: Majchrzak
     given-names: Filip
     affiliation: "SAPIO MORPHEUS / COMPLEX (independent research project)"
-date-released: 2026-11-08
-version: "1.0.0"
+date-released: 2026-11-09
+version: "1.1.0"
 license: CC-BY-4.0
 doi: 10.5281/zenodo.24049667
 identifiers:
@@ -39,3 +39,47 @@ references:
     identifiers:
       - type: other
         value: "arXiv:2510.21105"
+  - type: data
+    title: "An Explicit Public Certificate for G63 with Cut Value 27,052"
+    authors:
+      - family-names: Ota
+        given-names: Rikito
+      - family-names: Okada
+        given-names: Masato
+    year: 2026
+    doi: 10.5281/zenodo.19189885
+  - type: conference-paper
+    title: "Digital Annealer for High-Speed Solving of Combinatorial Optimization Problems and Its Applications"
+    authors:
+      - family-names: Matsubara
+        given-names: Satoshi
+      - family-names: Takatsu
+        given-names: Motomu
+      - family-names: Miyazawa
+        given-names: Toshiyuki
+      - family-names: Shibasaki
+        given-names: Takayuki
+      - family-names: Watanabe
+        given-names: Yasuhiro
+      - family-names: Takemoto
+        given-names: Kazuya
+      - family-names: Tamura
+        given-names: Hirotaka
+    year: 2020
+    collection-title: "2020 25th Asia and South Pacific Design Automation Conference (ASP-DAC)"
+    start: 667
+    end: 672
+    doi: 10.1109/ASP-DAC47756.2020.9045100
+  - type: article
+    title: "Leveraging Population Dynamics to Steer Efficient Search in Large-Scale Combinatorial Optimization"
+    authors:
+      - family-names: Khan
+        given-names: Nikhat
+      - family-names: Redding
+        given-names: Ridge
+      - family-names: Shukla
+        given-names: Nikhil
+    year: 2026
+    identifiers:
+      - type: other
+        value: "arXiv:2606.25203"
